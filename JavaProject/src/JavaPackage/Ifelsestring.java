@@ -1,0 +1,16 @@
+package JavaPackage;
+
+import java.util.Scanner;
+
+public class Ifelsestring {
+
+	public static void main(String[] args)
+	{
+		Scanner sc= new Scanner(System.in);
+		System.out.println("Enter the first number");
+		
+				
+		
+	}
+
+}
