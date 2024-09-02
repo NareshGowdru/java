@@ -2,87 +2,82 @@ package Practice;
 
 public class oops_concepts 
 {
-	from abc import ABC, abstractmethod
+	// Abstract Class demonstrating Abstraction
+	abstract class Animal {
+	    protected String name;
 
-	# Abstraction
-	class Animal(ABC):
-	    @abstractmethod
-	    def sound(self):
-	        pass
+	    public Animal(String name) {
+	        this.name = name;
+	    }
 
-	    def sleep(self):
-	        print(f"{self.__class__.__name__} is sleeping.")
+	    // Abstract method (to be implemented by subclasses)
+	    public abstract void sound();
 
-	# Encapsulation with inheritance
-	class Dog(Animal):
-	    def __init__(self, name, breed):
-	        self.__name = name  # Private attribute
-	        self.__breed = breed  # Private attribute
+	    // Concrete method
+	    public void sleep() {
+	        System.out.println(name + " is sleeping.");
+	    }
+	}
 
-	    def sound(self):
-	        print("Woof!")
+	// Encapsulation through getters and setters
+	class Dog extends Animal {
+	    private String breed;
 
-	    # Getter and Setter for name
-	    def get_name(self):
-	        return self.__name
+	    public Dog(String name, String breed) {
+	        super(name); // Inheritance
+	        this.breed = breed;
+	    }
 
-	    def set_name(self, name):
-	        self.__name = name
+	    public String getBreed() {
+	        return breed;
+	    }
 
-	    # Getter and Setter for breed
-	    def get_breed(self):
-	        return self.__breed
+	    public void setBreed(String breed) {
+	        this.breed = breed;
+	    }
 
-	    def set_breed(self, breed):
-	        self.__breed = breed
+	    // Implementing the abstract method
+	    @Override
+	    public void sound() {
+	        System.out.println(name + " barks.");
+	    }
+	}
 
-	    def display_info(self):
-	        print(f"Dog's Name: {self.get_name()}, Breed: {self.get_breed()}")
+	// Another class demonstrating Inheritance and Polymorphism
+	class Cat extends Animal {
+	    public Cat(String name) {
+	        super(name);
+	    }
 
-	# Inheritance with encapsulation
-	class Cat(Animal):
-	    def __init__(self, name, color):
-	        self.__name = name  # Private attribute
-	        self.__color = color  # Private attribute
+	    // Implementing the abstract method
+	    @Override
+	    public void sound() {
+	        System.out.println(name + " meows.");
+	    }
+	}
 
-	    def sound(self):
-	        print("Meow!")
+	public class Main {
+	    public static void main(String[] args) {
+	        // Creating objects (Polymorphism at play)
+	        Animal myDog = new Dog("Buddy", "Golden Retriever");
+	        Animal myCat = new Cat("Whiskers");
 
-	    # Getter and Setter for name
-	    def get_name(self):
-	        return self.__name
+	        // Accessing methods (Polymorphism)
+	        myDog.sound(); // Buddy barks.
+	        myDog.sleep(); // Buddy is sleeping.
 
-	    def set_name(self, name):
-	        self.__name = name
+	        myCat.sound(); // Whiskers meows.
+	        myCat.sleep(); // Whiskers is sleeping.
+System.out.println(myDog);
+	        // Using encapsulation to set and get breed
+	        //Dog specificDog = Dog.myDog; // Typecasting
+	       // specificDog.setBreed("Labrador");
+	       // System.out.println("Breed: " + specificDog.getBreed()); // Labrador
+	    }
+	    
+	}
 
-	    # Getter and Setter for color
-	    def get_color(self):
-	        return self.__color
 
-	    def set_color(self, color):
-	        self.__color = color
-
-	    def display_info(self):
-	        print(f"Cat's Name: {self.get_name()}, Color: {self.get_color()}")
-
-	# Polymorphism
-	def make_sound(animal):
-	    animal.sound()
-
-	# Main program
-	dog = Dog("Buddy", "Golden Retriever")
-	cat = Cat("Whiskers", "Tabby")
-
-	# Polymorphism in action
-	make_sound(dog)  # Outputs: Woof!
-	make_sound(cat)  # Outputs: Meow!
-
-	# Accessing encapsulated data
-	dog.display_info()  # Outputs: Dog's Name: Buddy, Breed: Golden Retriever
-	cat.display_info()  # Outputs: Cat's Name: Whiskers, Color: Tabby
-
-	# Using inherited method
-	dog.sleep()  # Outputs: Dog is sleeping.
-	cat.sleep()  # Outputs: Cat is sleeping.
+	   
 
 }
